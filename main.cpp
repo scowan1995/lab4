@@ -113,7 +113,7 @@ main(int argc, char* argv[])
             sendArray[i] = -1;
             recvArray[i] = -1;
         }
-        sendArray[processId] = electionArray[processId][0];
+       // sendArray[processId] = electionArray[processId][0];
         auto candidateArray = new int[numberOfProcesses+1];
         candidateArray[numberOfProcesses] = processId;
         do {
