@@ -127,7 +127,7 @@ main(int argc, char* argv[])
                     MPI_Send(&candidateArray, numberOfProcesses+1, MPI_INT, processId+1, 0, MPI_COMM_WORLD);
                 }
             }
-        }while (processId<numberOfProcesses);
+        }while (processId<numberOfProcesses-1);
 
 
             if (processId == 0) {
