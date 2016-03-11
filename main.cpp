@@ -121,10 +121,10 @@ main(int argc, char* argv[])
                 MPI_Send(&candidateArray, numberOfProcesses + 1, MPI_INT, processId + 1, 0, MPI_COMM_WORLD);
             }
             else {
-                MPI_Recv(&candidateArray, numberOfProcesses + 1, MPI_INT, processId - 1, 0, MPI_COMM_WORLD);
+                MPI_Recv(&candidateArray, numberOfProcesses + 1, MPI_INT, processId - 1, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
                 candidateArray[processId] = 999;
                 if (processId < numberOfProcesses-1){
-                    MPI_Send(&candidateArray, numberOfProcesses+1);
+                    MPI_Send(&candidateArray, numberOfProcesses+1, MPI_INT, processId+1, 0, MPI_COMM_WORLD);
                 }
             }
         }while (processId<numberOfProcesses);
