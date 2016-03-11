@@ -119,12 +119,14 @@ main(int argc, char* argv[])
         do {
             if (processId == 0) {
                 MPI_Send(&candidateArray, numberOfProcesses + 1, MPI_INT, processId + 1, 0, MPI_COMM_WORLD);
+                std::cout<<"past first send "<<processId<<std::endl;
             }
             else {
                 MPI_Recv(&candidateArray, numberOfProcesses + 1, MPI_INT, processId - 1, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
                 candidateArray[processId] = 999;
                 if (processId < numberOfProcesses-1){
                     MPI_Send(&candidateArray, numberOfProcesses+1, MPI_INT, processId+1, 0, MPI_COMM_WORLD);
+                    std::cout<<"past second send "<<processId<<std::endl;
                 }
             }
         }while (processId<numberOfProcesses-1);
